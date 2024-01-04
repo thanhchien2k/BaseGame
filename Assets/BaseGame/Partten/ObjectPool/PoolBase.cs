@@ -19,7 +19,7 @@ namespace BaseGame.ObjectPool
             SetupPool();
             if(root == null) root = transform; 
         }
-
+            
         private void SetupPool()
         {
             if (pooledObject == null) return;
