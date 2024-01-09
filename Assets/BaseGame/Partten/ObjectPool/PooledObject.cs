@@ -1,7 +1,7 @@
 using BaseGame.ObjectPool;
 using UnityEngine;
 
-public class PooledObject : MonoBehaviour
+public class PooledObject: MonoBehaviour
 {
     private PoolBase pool;
     public PoolBase Pool { get { return pool; } set { pool = value; } }

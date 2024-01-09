@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace BaseGame.ObjectPool
 {
-    public class PoolBase : MonoBehaviour
+    public class PoolBase: MonoBehaviour
     {
         // initial number of cloned objects
         [SerializeField] private uint initPoolSize;
         // pooledObject Prefabs
         [SerializeField] private PooledObject pooledObject;
-        //
+        
         [SerializeField] private Transform root;
 
         private Stack<PooledObject> stackPooled;

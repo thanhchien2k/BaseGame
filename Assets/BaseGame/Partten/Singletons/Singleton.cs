@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace BaseGame.Sngletons
 {
-    public class Singleton<T> : MonoBehaviour where T : Component
+    public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     {
         private static T instance;
         public static T Instance
@@ -15,7 +15,10 @@ namespace BaseGame.Sngletons
 
                     if (instance == null)
                     {
-                        SetUpInstance();
+                        GameObject newObj = new();
+                        newObj.name = typeof(T).Name;
+                        instance = newObj.AddComponent<T>();
+                        DontDestroyOnLoad(newObj);
                     }
                     else
                     {
@@ -23,7 +26,6 @@ namespace BaseGame.Sngletons
                         Debug.Log("Singleton of " + typeName + " instance already created: " + instance.gameObject.name);
                     }
                 }
-
                 return instance;
             }
         }
@@ -33,33 +35,25 @@ namespace BaseGame.Sngletons
             RemoveDupalicates();
         }
 
-        private static void SetUpInstance()
-        {
-            instance = FindObjectOfType<T>();
-
-            if(instance == null)
-            {
-                GameObject newObj = new();
-                newObj.name = typeof(T).Name;
-                instance = newObj.AddComponent<T>();
-
-                DontDestroyOnLoad(newObj);
-            }
-        }
-
         private void RemoveDupalicates()
         {
             if(instance == null) 
             {
                 instance = this as T;
-                DontDestroyOnLoad(instance);
+                DontDestroyOnLoad(gameObject);
             }
             else
             {
                 Destroy(gameObject);
             }
         }
+
+        protected void OnDestroy()
+        {
+            instance = null;
+        }
     }
+
 }
 
 

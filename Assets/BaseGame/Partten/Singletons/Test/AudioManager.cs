@@ -6,7 +6,6 @@ public class AudioManager : Singleton<AudioManager>
 {
     [SerializeReference] protected AudioSource musicSource;
     [SerializeReference] protected AudioSource effectSource;
-    public AudioClip musicSound, effectSound;
     protected override void Awake()
     {
         base.Awake();
@@ -15,7 +14,7 @@ public class AudioManager : Singleton<AudioManager>
 
     public void PlayMusicSound()
     {
-        if (musicSound != null) musicSource.clip = musicSound;
+        if (musicSource.clip != null) return;
         musicSource.Play();
     }
 
