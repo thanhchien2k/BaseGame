@@ -25,7 +25,7 @@ namespace BaseGame.ObjectPool
             if (pooledObject == null) return;
 
             stackPooled = new ();
-            PooledObject tempObj = null;
+            PooledObject tempObj;
 
             for (int i = 0; i < initPoolSize; i++)
             {
